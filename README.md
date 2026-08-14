@@ -1,1 +1,1 @@
-# npm_js_trainings
+# Training Materials. Test Automation (Javascript)
