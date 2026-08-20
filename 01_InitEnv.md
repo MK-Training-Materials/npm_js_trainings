@@ -92,6 +92,79 @@ $ npm -v
 11.6.0
 ```
 
+## VSCode setup
+
+Visual Studio Code (further VSCode) is one of the most popular editors which can be used for tests development. In particular, for Javascript/Node based tests it's one of the most accessible editors.
+
+It is installed as regular desktop applications. Downloads are available [here](https://code.visualstudio.com/Download). Just pick up corresponding installation package and follow installation steps.
+
+### Jest plugin setup
+
+Before continue with project setup, it's good to install additional useful VSCode extension which operates with the Jest, the core test runner which will be used in further chapters. 
+
+Extensions are setup from the left-hand side panel. Steps are:
+* On the left-hand side panel, click **Extensions** button
+* In the search text field type **Jest**
+* Select **Jest** item (should be somewhere in the top) as it's shown on the below screenshot and click on the **Install** button
+
+The overall sequence looks like:
+![Jest Extension Setup](img/01_02.png)
+
+
 ## Setup Project
 
+npm init -y
+npm install --save-dev jest
+npm install --save-dev @jest/globals
+
+```json
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@jest/globals": "^30.4.1",
+    "jest": "^30.4.2"
+  }
+}
+```
+
+* scripts
+* type
+* devDependencies
+
 ## Sample Test
+
+### Updates to package.json
+
+```
+"scripts": {
+    "test": "jest"
+  },
+```
+
+### Sample test code
+
+```javascript
+const { describe } = require("@jest/globals");
+
+describe('Sample test container', () => {
+    test('sample test', () => {
+        console.log('Hello World!');
+    });
+});
+```
+
+### Running test
+
+```
+npm run test
+```
