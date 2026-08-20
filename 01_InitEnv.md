@@ -178,6 +178,23 @@ And the final step of this chapter is to create some very simple test just in or
 
 ### Sample test code
 
+Firstly, let's put some sample test into the project. For this purpose, let's create the **__tests__** folder under the project root and put **sample.test.js** file in there. This way, the overall project structure looks as follows:
+```
+<root>
+  |
+  +- __tests__
+  |      |
+  |      +- sample.test.js
+  |
+  +- node_modules
+  |
+  +- package-lock.json
+  |
+  +- package.json
+```
+
+After that, let's fill the content of the **sample.test.js** file. For now, the content is:
+
 ```javascript
 const { describe } = require("@jest/globals");
 
@@ -190,15 +207,89 @@ describe('Sample test container', () => {
 
 ### Updates to package.json
 
-```
+Last step is to update the **package.json** file to specify which command to run when we need to run tests. Before that the **scripts** section contained only one item which was simply printing some message. In order to make proper test run command we need to replace it with the call of **jest** command. Thus, the **scripts** section now looks as follows:
+
+```json
 "scripts": {
     "test": "jest"
   },
 ```
 
+or the entire **package.json** file looks like that:
+
+```json
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@jest/globals": "^30.4.1",
+    "jest": "^30.4.2"
+  }
+}
+```
+
+Now we are ready to run our sample test
 
 ### Running test
+
+#### Running from command line
+
+Whatever tests we create, they should be runnable from command line. Previously, we made all necessary setup to make our test running. In order to perform test run, we can use the following command line:
 
 ```
 npm run test
 ```
+
+It will run all the tests Jest finds. Currently there is just only one test, so the output will include only one test. After the command line run, the output should look like:
+
+```
+$ npm run test
+
+> test@1.0.0 test
+> jest
+
+  console.log
+    Hello World!
+
+      at Object.log (__tests__/sample.test.js:5:17)
+
+ PASS  __tests__/sample.test.js
+  Sample test container
+    ✓ sample test (22 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        0.291 s, estimated 1 s
+Ran all test suites.
+
+```
+
+Once the output is like that, all the setup is done properly.
+
+#### Running from VSCode
+
+So far, only single and simple test was created but during normal development there will be lots of tests. Also, previous command line runs all the available tests, however, during test development we mainly need to run just single test or group of tests we are working on at the moment. That's why it is convenient to use VSCode for this purpose.
+
+Once all necessary extensions are installed and all the code is written, we can open our **sample.test.js** file in the VSCode and look at the left side of the lines containing **describe** and **test** keywords. They both should contain clickable icons which can run tests. Here is how they can look like:
+
+![VSCode View](img/01_03.png)
+
+If you click on any of arrow pointed icons, the corresponding test will be run.
+
+## Summary
+
+In this chapter we are supposed to have:
+* Fully setup Node environment
+* Properly setup VSCode for writing our code
+* Sample Javascript test project skeleton
+* Sample test which can be run both from command line and VSCode
