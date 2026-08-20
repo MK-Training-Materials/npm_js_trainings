@@ -113,9 +113,30 @@ The overall sequence looks like:
 
 ## Setup Project
 
+### Build project skeleton
+
+The last step of preparation is to setup some sample project where all the further code samples will be placed. It should be done with the following steps:
+
+**Step 1:** create some folder where the test project is supposed to be located. In the future, this folder will be called as **project root**.
+
+**Step 2:** open command line and navigate to the project root folder. Once there, run the following set of commands:
+
+```
 npm init -y
 npm install --save-dev jest
 npm install --save-dev @jest/globals
+```
+
+After everyting is completed, review the folder contents. Now the project root folder contains 3 new items:
+* **node_modules** - the folder which contains necessary external dependencies. It is needed for Node to find all necessary code part. For regular developer this folder just should exist, there's nothing special to look at there
+* **package-lock.json** - some temporary dependency cache file. 
+* **package.json** - major project file where major setings and references are specified..
+
+### package.json file overview
+
+Since the **package.json** is core project file, it should be described in more details.
+
+If project is set up from the scratch without any other specific settings, the overall content of the **package.json** after previous setup steps should look like:
 
 ```json
 {
@@ -136,20 +157,24 @@ npm install --save-dev @jest/globals
   }
 }
 ```
-
+At the moment, most of the content is pretty much generic except the following nodes which will be of our interest. They are:
 * scripts
 * type
 * devDependencies
 
+The **scripts** section contains the list of pre-defined commands supported by project itself. It associates project-specific commands with actual command lines. At the moment, there is just one dummy command **test** which simply prints error message. Later in this chapter it will be updated. The idea is that each script item is supposed to be executed by running the command like this:
+```
+npm run <script name>
+```
+where **<\script name>** is actual item name under the **scripts** section.
+
+The **type** field identifies the type of Javascript project it is. Depending on the value, there can be some additional abilities. For training purposes, the **commonjs** as the most generic one is used.
+
+The **devDependencies** section contains external code libraries which we can use from our code. The thing is that the Node itself contains just some core set of available functionality. Lots of other re-usable code are usually provided as some external modules which can be included on demand. Currently, there are just 2 items in there: **jest** and **@jest/globals**. They correspond to relevant external program modules which we can re-use now within our current project.
+
 ## Sample Test
 
-### Updates to package.json
-
-```
-"scripts": {
-    "test": "jest"
-  },
-```
+And the final step of this chapter is to create some very simple test just in order to present typical test structure and create some minimal runnable sample.
 
 ### Sample test code
 
@@ -162,6 +187,15 @@ describe('Sample test container', () => {
     });
 });
 ```
+
+### Updates to package.json
+
+```
+"scripts": {
+    "test": "jest"
+  },
+```
+
 
 ### Running test
 
