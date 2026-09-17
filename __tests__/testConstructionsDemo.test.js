@@ -16,12 +16,12 @@ describe('Root Block', () => {
             console.log('Nested before each');
         });
 
-        // afterAll(() => {
-        //     console.log('Nested after all');
-        // });
-        // afterEach(() => {
-        //     console.log('Nested after each');
-        // });
+        afterAll(() => {
+            console.log('Nested after all');
+        });
+        afterEach(() => {
+            console.log('Nested after each');
+        });
     });
     test('root block test', () => {
         console.log('First root block test');
@@ -42,10 +42,10 @@ describe('Root Block', () => {
         console.log('Root before each');
     });
 
-    // afterAll(() => {
-    //     console.log('Root after all');
-    // });
-    // afterEach(() => {
-    //     console.log('Root after each');
-    // });
+    afterAll(() => {
+        console.log('Root after all');
+    });
+    afterEach(() => {
+        console.log('Root after each');
+    });
 });
